@@ -47,6 +47,8 @@ const filters = createReducer(initialState, builder => {
         .addDefaultCase(() => {})
 })
 
+export default filters;
+
 
 // const filters = (state = initialState, action) => {
 //     switch (action.type) {
@@ -84,4 +86,3 @@ const filters = createReducer(initialState, builder => {
 //     }
 // }
 
-export default filters;

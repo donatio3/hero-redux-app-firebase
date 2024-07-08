@@ -12,10 +12,16 @@
       "element": "water"
     },
     {
-      "id": "64bbf756-f5d0-46a4-9f65-c4802741898c",
-      "name": "earthmen",
-      "description": "управлять землей",
-      "element": "earth"
+      "id": "67ebf03c-059f-4a45-bfe6-621f71efe51b",
+      "name": "sdf",
+      "description": "asd",
+      "element": "fire"
+    },
+    {
+      "id": "f39d4c90-ece0-452a-bccb-9c7f2403b840",
+      "name": "dima",
+      "description": "все",
+      "element": "water"
     }
   ],
   "filters": [

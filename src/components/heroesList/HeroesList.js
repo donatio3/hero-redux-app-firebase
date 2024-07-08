@@ -1,4 +1,4 @@
-import {useHttp} from '../../hooks/http.hook';
+import {useDatabase, useHttp} from '../../hooks/http.hook';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -32,6 +32,7 @@ const HeroesList = () => {
     const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
     const dispatch = useDispatch();
     const {request} = useHttp();
+    const {deleteHeroFromDatabase} = useDatabase()
 
     useEffect(() => {
         dispatch(fetchHeroes());
@@ -40,7 +41,8 @@ const HeroesList = () => {
 
     const removeHero = useCallback( (id) => {
         console.log(id, 'id')
-        request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+        // request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+        deleteHeroFromDatabase(id)
         .then(data => dispatch(deleteHero(id)))
     }) 
 

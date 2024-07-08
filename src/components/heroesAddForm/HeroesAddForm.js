@@ -1,5 +1,5 @@
 import { addHero } from "../heroesList/heroesSlice";
-import { useHttp } from "../../hooks/http.hook";
+import { useDatabase, useHttp } from "../../hooks/http.hook";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
@@ -23,6 +23,7 @@ const HeroesAddForm = () => {
     const {filters, filtersLoadingStatus} = useSelector(state => state.filters)
 
     const {request} = useHttp()
+    const {addHeroToDatabase} = useDatabase()
 
     const createHero = (e) => {
         e.preventDefault()
@@ -33,9 +34,10 @@ const HeroesAddForm = () => {
             description,
             element
         }
-        console.log(newHero.id)
 
-        request("http://localhost:3001/heroes", 'POST', JSON.stringify(newHero))
+        // request("http://localhost:3001/heroes", 'POST', JSON.stringify(newHero))
+
+        addHeroToDatabase(newHero)
         .then((data) => dispatch(addHero(newHero)))
         .then(data => console.log(data, 'response'))
         .catch(() =>console.log('error'))
@@ -99,14 +101,13 @@ const HeroesAddForm = () => {
                 <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
                 <select 
                     required
-                    value={element}
-                    onChange={(e) => changeInput(e, setElement)}
                     className="form-select" 
                     id="element" 
-                    name="element">
-                        <option >Я владею элементом...</option>                        
-                        {renderFilters(filters, filtersLoadingStatus)}
-
+                    name="element"
+                    onChange={(e) => changeInput(e, setElement)}
+                    value={element}>
+                    <option value="">Я владею элементом...</option>
+                    {renderFilters(filters, filtersLoadingStatus)}
                 </select>
             </div>
 

@@ -1,20 +1,25 @@
 import { createAction } from "@reduxjs/toolkit";
 import { heroesFetched, heroesFetchingError, heroesFetching } from "../components/heroesList/heroesSlice";
 // import { filtersFetching, filtersFetched, filtersFetchingError } from "../components/heroesFilters/filtersSlice";
+import { useDatabase } from "../hooks/http.hook";
 
-export const fetchHeroes = (request) => (dispatch) => {
-    dispatch(heroesFetching());
-    request("http://localhost:3001/heroes")
-        .then(data => dispatch(heroesFetched(data)))
-        .catch(() => dispatch(heroesFetchingError()))
-}
+// export const fetchHeroes = (request) => (dispatch) => {
+//     dispatch(heroesFetching());
+//     request("http://localhost:3001/heroes")
+//         .then(data => dispatch(heroesFetched(data)))
+//         .catch(() => dispatch(heroesFetchingError()))
+// }
 
 
-export const fetchFilters = (request) => (dispatch) => {
+export const fetchFilters = (getFilters) => (dispatch) => {
     dispatch(filtersFetching())
-    request("http://localhost:3001/filters")
+    getFilters()
     .then((data) => dispatch(filtersFetched(data)))
     .catch(() => dispatch(filtersFetchingError()))
+
+    // request("http://localhost:3001/filters")
+    // .then((data) => dispatch(filtersFetched(data)))
+    // .catch(() => dispatch(filtersFetchingError()))
 }
 
 

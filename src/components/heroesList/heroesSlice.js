@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 import {useHttp} from '../../hooks/http.hook'
-
+import { useDatabase } from "../../hooks/http.hook";
 
 // createEntityAdapter возвращает обьект с методами свойствами селекторами
 const heroesAdapter = createEntityAdapter()
@@ -16,12 +16,16 @@ const initialState = heroesAdapter.getInitialState({
     heroesLoadingStatus: 'idle'
 })
     
+
+
 export const fetchHeroes = createAsyncThunk(
     'heroes/fetchHeroes',     // первое должно cовпадать со срезом/тип действия
-    () => {   // работает с асинхроным кодом и return Promise
-        const {request} = useHttp();
-        return request(`http://localhost:3001/heroes`)
+    async () => {   // работает с асинхроным кодом и return Promise
+        // const {request} = useHttp();
+        // return request(`http://localhost:3001/heroes`)
 
+        const {getHeroes} = useDatabase()
+        return getHeroes()
     } 
 )
 
@@ -75,7 +79,6 @@ export const filteredHeroesSelector = createSelector(  // меморизируе
         selectAll,
         (filter, heroes) => {
             if (filter === 'all') {
-                console.log(selectAll, 'select ALL')
 
                 return heroes;
             } else {

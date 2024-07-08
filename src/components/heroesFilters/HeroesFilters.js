@@ -7,7 +7,7 @@
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
 import { useEffect } from "react";
-import { useHttp } from "../../hooks/http.hook";
+import { useDatabase, useHttp } from "../../hooks/http.hook";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../spinner/Spinner";
 import classNames from 'classnames';
@@ -19,9 +19,11 @@ const HeroesFilters = () => {
     const dispatch = useDispatch()
     const {filters, filterChooseActive, filtersLoadingStatus} = useSelector(state => state.filters)
     const {request} = useHttp()
+    const {getFilters} = useDatabase()
 
     useEffect(() => {
-        dispatch(fetchFilters(request))
+        // dispatch(fetchFilters(request))
+        dispatch(fetchFilters(getFilters))
     }, [])
 
     if (filtersLoadingStatus === 'loading') {

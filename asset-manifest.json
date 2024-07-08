@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Breadcrumbshero-redux-app-firebase/static/css/main.ad446662.css",
+    "main.js": "/Breadcrumbshero-redux-app-firebase/static/js/main.7c7a5ade.js",
+    "static/media/hero_bg.jpg": "/Breadcrumbshero-redux-app-firebase/static/media/hero_bg.0540b794b0424b67d780.jpg",
+    "index.html": "/Breadcrumbshero-redux-app-firebase/index.html",
+    "main.ad446662.css.map": "/Breadcrumbshero-redux-app-firebase/static/css/main.ad446662.css.map",
+    "main.7c7a5ade.js.map": "/Breadcrumbshero-redux-app-firebase/static/js/main.7c7a5ade.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad446662.css",
+    "static/js/main.7c7a5ade.js"
+  ]
+}
